@@ -1,0 +1,12 @@
+version: "3.3"
+services:
+  ebcli:
+    volumes:
+      - ~/.aws/:/root/.aws
+    build:
+      context: .
+    environment:
+      - ASSUME_ROLE_ARN
+      - AWS_PROFILE
+      - AWS_ACCESS_KEY_ID
+      - AWS_SECRET_ACCESS_KEY
