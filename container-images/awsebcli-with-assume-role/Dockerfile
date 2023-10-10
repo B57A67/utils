@@ -1,5 +1,14 @@
-FROM python:3-alpine3.18
-RUN apk add --no-cache build-base libffi-dev openssl-dev
+FROM python:3.11-alpine3.18
+
+RUN apk add --no-cache \
+  build-base \
+  libffi-dev \
+  openssl-dev \
+  git \
+  curl \
+  bash \
+  groff \
+  vim
 
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -13,4 +22,5 @@ RUN chmod a+x /wrapper/with-assume-role
 
 ENV PATH=/wrapper:${PATH}
 
-CMD [ "with-assume-role", "eb" ]
+ENTRYPOINT [ "tail" ]
+CMD [ "/wrapper/with-assume-role", "-f", "/dev/null" ]

@@ -14,7 +14,20 @@ docker build -t kreebo/awsebcli-with-assume-role
 
 ```
 export ASSUME_ROLE_ARN=arn:aws:iam::123456789012:role/demo
-docker run --rm -e AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY -e AWS_SESSION_TOKEN \
-    kreebo/awsebcli-with-assume-role \
-    with-assume-role eb --version
+export AWS_PROFILE=<your_sso_profile>
+
+```
+docker compose build
+```
+
+then,
+
+```
+docker compose up
+```
+
+you can then exec into the container terminal using
+
+```
+docker exec -it awsebcli-with-assume-role-ebcli-1 sh
 ```
